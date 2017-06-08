@@ -24,7 +24,7 @@ class Mesh():
 
     def add_vert(self, coords):
         """
-        :type coords: tuple(float)
+        :type coords: tuple[float]
         :param coords: tuple of three floats
         :return: void
         """
@@ -32,11 +32,26 @@ class Mesh():
 
     def add_face(self, verts):
         """
-        :type verts: tuple(int)
+        :type verts: tuple[int]
         :param verts: tuple of three ints
         :return: void
         """
         self._faces.append(verts)
+
+    def get_verts(self):
+        """
+        :rtype : list[tuple[int]]
+        :return: list of tuples of vert coords
+        """
+        return self._verts
+
+    def get_faces(self):
+        """
+        :rtype : list[tuple[int]]
+        :return: list of tuples of vert indicies
+        """
+
+        return self._faces
 
 
 if __name__ == "__main__":
@@ -52,6 +67,10 @@ if __name__ == "__main__":
     test_mesh.add_face((4,5,1))
     test_mesh.add_face((1,2,3,4))
     test_mesh.generate_obj("pyramid.obj")
+    these_verts = test_mesh.get_verts()
+    print (these_verts[0][0])
+    these_faces = test_mesh.get_faces()
+    print (these_faces[0][0])
 
 
 
