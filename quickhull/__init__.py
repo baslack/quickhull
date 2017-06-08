@@ -89,18 +89,20 @@ def find_hull(s, p, q):
     # 3. partition remaining points into s1, s2, and s0. s1 are points on the right of the line from p -> new point
     #    s2 are points ont he right from new point -> q, and s0 are points inside the triangle
     # 4. find_hull(s1, p, c)
-        if len(s1) != 0:
-            find_hull(s1, p, min_x)
+    if len(s1) != 0:
+        find_hull(s1, p, min_x)
     # 5. find_hull(s2, c, q)
-        if len(s2) != 0:
-            find_hull(s2, min_x, q)
+    if len(s2) != 0:
+        find_hull(s2, min_x, q)
+
 def split_point(s, p1, p2, p3):
     top = []
     bot = []
     i=0
     slope = ((p1[0][1] - p2[0][1]) / (p1[0][0] - p2[0][0]))
-    slope
+    slope2 = ((p2[0][1] - p3[0][1]) / (p2[0][0] - p3[0][0]))
     b = ((((p1[0][1] - p2[0][1]) / (p1[0][0] - p2[0][0])) * (-p2[0][0])) + p2[0][1])
+    b2 = ((((p2[0][1] - p3[0][1]) / (p2[0][0] - p3[0][0])) * (-p3[0][0])) + p3[0][1])
     while i < len(s):
         y = (slope * s[i][0]) + b
         y2 = (slope2 * s[i][0]) + b
