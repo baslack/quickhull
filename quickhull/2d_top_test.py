@@ -23,23 +23,20 @@ def main():
     max = 0
     min = 0
     while i < len(s):
-        if(s[i][0] < s[min][0]):
-            min = i
         if (s[i][0] > s[max][0]):
             max = i
         i+=1
-    p1 = []
+    i=0
     p2 = []
-    p1.append(s[min])
     p2.append(s[max])
-    if s[max][0] < s[min][0]:
-        del s[min]
-        del s[max]
-    else:
-        del s[max]
-        del s[min]
-
-
+    del s[max]
+    while i < len(s):
+        if(s[i][0] < s[min][0]):
+            min = i
+        i+=1
+    p1 = []
+    p1.append(s[min])
+    del s[min]
 
     hull.append(p2[0])
     hull.append(p1[0])
@@ -58,6 +55,7 @@ def main():
         else:
             nil.append(s[i])
         i += 1
+
     # $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
     if len(nil) != 0:
         x3, y3 = zip(*nil)
@@ -74,10 +72,16 @@ def main():
     plt.grid(True)
     plt.show()
     # $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-
     split_point(s1, p1, p2, 1)
     split_point(s2, p1, p2, -1)
-
+    x4, y4 = zip(*hull)
+    plt.scatter(x4, y4, marker='o', color='orange')
+    if len(nil) != 0:
+        x3, y3 = zip(*nil)
+        plt.scatter(x3, y3, marker='o', color='black')
+    plt.axis([-5, 50, -5, 50])
+    plt.grid(True)
+    plt.show()
 
 def split_point(s, p1, p2, pos):
     p3 = []
@@ -115,16 +119,16 @@ def split_point(s, p1, p2, pos):
             i += 1
     if pos == -1:
         while i < len(s):
-            x1 = (s[i][1] - b1) / m1
-            x2 = (s[i][1] - b2) / m2
-            if s[i][0] < x1:
+            y = (m1 * s[i][0]) + b1
+            y2 = (m2 * s[i][0]) + b2
+            if s[i][1] < y:
                 s1.append(s[i])
-            elif s[i][0] > x2:
+            elif s[i][1] < y2:
                 s2.append(s[i])
-            elif s[i][0] > x1 and s[i][0] < x2:
+            else:
                 nil.append(s[i])
             i+=1
-
+    """ 
     if len(nil) != 0:
         x3, y3 = zip(*nil)
         plt.scatter(x3, y3, marker='o', color='black')
@@ -140,6 +144,7 @@ def split_point(s, p1, p2, pos):
     plt.axis([-5, 50, -5, 50])
     plt.grid(True)
     plt.show()
+    """
     if len(s1) != 0:
         split_point(s1,p1,p3,pos)
     if len(s2) != 0:
