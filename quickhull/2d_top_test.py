@@ -1,8 +1,11 @@
+
 import matplotlib.pyplot as plt
 import random
 nil = []
 hull = []
-
+"""
+2D convex hull works fine. Just need to comment code and cleanup sections by adding function calls. 
+"""
 def main():
     #s = [(1.1,5.0), (2.0,5.5), (3.0,5.0), (5.0,3.0), (3.0,3.0), (7.5,4.0), (7.0,5.0),(5.0,6.0),
     #     (6.0,5.5), (7.0,5.3), (6.0,3.5), (6.0,4.0), (5.0,4.0), (4.0,4.0), (3.0,4.0),(5.0,5.0),
