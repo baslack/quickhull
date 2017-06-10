@@ -4,6 +4,7 @@
 
 import array
 import random
+import geo
 
 class Point():
     """
@@ -293,15 +294,68 @@ def chan(raw_pts, filename="chan.obj"):
     hull(p_list, 0, len(p_list), len(p_list), A, B, 0, len(A))
 
 
+    # i = 0
+    # while A[i] != __nil:
+    #     print("f[{0}] {1} {2} {3}".format(
+    #         i+1,
+    #         p_list.index(A[i].prv) + 1,
+    #         p_list.index(A[i]) + 1,
+    #         p_list.index(A[i].nxt) + 1))
+    #     A[i].act()
+    #     i += 1
+
+    #output the lower hull
+    test_mesh = geo.Mesh()
+    for this_pt in p_list:
+        test_mesh.add_vert((this_pt.x, this_pt.y, this_pt.z))
+
     i = 0
     while A[i] != __nil:
-        print("f[{0}] {1} {2} {3}".format(
-            i+1,
-            p_list.index(A[i].prv) + 1,
-            p_list.index(A[i]) + 1,
-            p_list.index(A[i].nxt) + 1))
+        #use turn to determine the normal orientation
+        if turn(A[i].prv, A[i], A[i].nxt) < 0:
+            test_mesh.add_face((p_list.index(A[i].prv) + 1,
+                                p_list.index(A[i]) + 1,
+                                p_list.index(A[i].nxt) + 1))
+        else:
+            test_mesh.add_face((p_list.index(A[i].nxt) + 1,
+                                p_list.index(A[i]) + 1,
+                                p_list.index(A[i].prv) + 1))
         A[i].act()
         i += 1
+
+    #rerun the hull algo, with the data flipped
+    #on z. Then flip the point order on the the
+    #face on rebuild to reverse the mirror
+
+    A = list()
+    B = list()
+    for i in range(2 * len(p_list)):
+        A.append(None)
+        B.append(None)
+
+    x_sort(p_list)
+    for this_pt in p_list:
+        this_pt.z *= -1
+
+    hull(p_list, 0, len(p_list), len(p_list), A, B, 0, len(A))
+
+
+    i = 0
+    while A[i] != __nil:
+        #just flip the sign on turn switch to mirror
+        if turn(A[i].prv, A[i], A[i].nxt) > 0:
+            test_mesh.add_face((p_list.index(A[i].prv) + 1,
+                                p_list.index(A[i]) + 1,
+                                p_list.index(A[i].nxt) + 1))
+        else:
+            test_mesh.add_face((p_list.index(A[i].nxt) + 1,
+                                p_list.index(A[i]) + 1,
+                                p_list.index(A[i].prv) + 1))
+        A[i].act()
+        i += 1
+
+    test_mesh.generate_obj(filename)
+
 
 
 if __name__ == "__main__":
@@ -325,7 +379,7 @@ if __name__ == "__main__":
     # test.append((-4.0, 1.0, -4.0))
     # test.append((-5.0, 4.0, 5.0))
 
-    for i in range(20):
+    for i in range(100):
         test.append((random.random()*20-10, random.random()*20-10, random.random()*20-10))
 
     chan(test)
