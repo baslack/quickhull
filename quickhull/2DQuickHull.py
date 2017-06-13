@@ -13,7 +13,7 @@ def main():
     s1 = []
     s2 = []
     s = Helper.get_points()
-    p1, p2, s = Helper.get_initial_points(s)
+    p1, p2, s = Helper.get_initial_hull(s)
 
     hull.append(p2[0])
     hull.append(p1[0])
@@ -64,7 +64,7 @@ def main():
 
 def split_point(s, p1, p2, pos):
     p3 = []
-    index = Helper.get_max(s, pos)
+    index = Helper.get_max(s, p1, p2)
     p3.append(s[index])
     del s[index]
     hull.append(p3[0])
@@ -107,6 +107,22 @@ def split_point(s, p1, p2, pos):
             else:
                 nil.append(s[i])
             i += 1
+    # ###########################################################
+    if len(nil) != 0:
+        x3, y3 = zip(*nil)
+        plt.scatter(x3, y3, marker='o', color='black')
+    if len(s1) != 0:
+        x1, y1 = zip(*s1)
+        plt.scatter(x1, y1, marker='x', color='blue')
+    if len(s2) != 0:
+        x2, y2 = zip(*s2)
+        plt.scatter(x2, y2, marker='x', color='green')
+    x4, y4 = zip(*hull)
+    plt.scatter(x4, y4, marker='o', color='orange')
+    plt.axis([-5, 50, -5, 50])
+    plt.grid(True)
+    plt.show()
+    # ###########################################################
     if len(s1) != 0:
         split_point(s1, p1, p3, pos)
     if len(s2) != 0:
