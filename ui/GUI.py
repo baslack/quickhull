@@ -1,9 +1,3 @@
-# Basic Interface:
-#
-# Numeric Fields:
-# Min X, Min Y, Min Z
-# Max X, Max Y, Max Z
-# Number of Points:
 # Radio Button:
 # Options:
 # QuickHull3D
@@ -32,7 +26,9 @@
 # Started 6/9/17
 # The GUI for Algorithms Project
 
+from Tkinter import *
 import Tkinter as tk
+import Tkconstants, tkFileDialog
 
 
 class ExampleApp(tk.Frame):
@@ -42,10 +38,7 @@ class ExampleApp(tk.Frame):
     def __init__(self, master):
         tk.Frame.__init__(self, master, width=300, height=200)
         self.master.title('Alg Project')
-
-        # This allows the size specification to take effect
-        self.pack_propagate(0)
-        self.pack()
+        self.grid()
 
         # Sets min max windows
         # XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
@@ -87,8 +80,30 @@ class ExampleApp(tk.Frame):
         self.numPoiSet = tk.Entry(self, textvariable=self.numPoi).grid(row=4, column=1)
         self.numPoi.set('100')
 
-        # The go button
-        self.go_button = tk.Button(self, text='Launch', command=self.startApp()).grid(row=6, column=2)
+        # Save field ###############################################
+        tk.Label(self, text="Save as ").grid(row=5, column=0)
+        self.fileText = tk.StringVar()
+        self.fileTextSet = tk.Entry(self, textvariable=self.numPoi).grid(row=5, column=1)
+        self.filButton = tk.Button(self,
+                                     text='...',
+                                     command=self.fileText.set(tkFileDialog.asksaveasfilename(
+                                         initialdir="/",
+                                         title="Select file",
+                                         filetypes=(
+                                             ("Object files", "*.Obj"), (
+                                                 "all files",
+                                                 "*.*"))))).grid(row=5, column=3)
+
+        # Radio Group which function ###############################
+        self.v = int
+        tk.Radiobutton(self, text="Python", padx=20, variable=self.v, value=1).grid(row=6)
+        tk.Radiobutton(self, text="Perl", padx=20, variable=self.v, value=2).grid(row=7)
+
+        # The go button and the Exit button
+        self.goButton = tk.Button(self, text='Launch',
+                                  command=self.startApp()).grid(row=8, column=1)
+        self.exitButton = tk.Button(self, text='Exit',
+                                    command=tk.quit(self)).grid(row=8, column=2)
 
     def startApp(self):
         """Starts selected algorithms"""
