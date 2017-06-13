@@ -1,0 +1,4 @@
+The gui uses the Tkinter package to dispay the items in a grid format.Each part will work as follows: The text areas will take the X, Y, Z inputs for min and max setting, as well as a text input for number of points for the two algorithims. Below that is a file input text box with a browser button that fills in the text box with the file path. Below that will be a set of radio buttons that select which agorithim to call, wether QuickHull or Chan Minimalist. Lastly there are two buttons, a launch button and a exit button. The launch button takes all the previous information and passes it to which ever algorithim for processing. The exit button exits the program cleanly.
+
+references
+(SciNet HPC Consortium), Erik Spence, Tkinter presentation, https://wiki.scinet.utoronto.ca/wiki/images/9/9c/Tkinter.pdf
