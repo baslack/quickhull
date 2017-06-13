@@ -6,7 +6,7 @@ Max X, Max Y, Max Z
 Number of Points:
 Radio Button:
 Options:
-QuickHull3D
+QuickHull2D
 Chan Minimalist
 String or Browser Field:
 Filename
@@ -27,3 +27,10 @@ using the Mesh class in the geo
 package.
 
 Exit should close the app.
+
+
+2D quickhull will need to have the following defined
+
+- min x, max x for point range and axis while displaying on graph
+- min y, max y for point range and axis while displaying on graph
+- how many points to plot
