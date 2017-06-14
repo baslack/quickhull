@@ -116,8 +116,8 @@ class ExampleApp(Frame):
 
     def startApp(self):
         """Starts selected algorithms"""
-        print("sent tupples")
         self.makePoints()
+        print("send to algerithim")
 
     def makePoints(self):
         """Creates sets of tupples for App"""
@@ -129,14 +129,12 @@ class ExampleApp(Frame):
                 self.points.append((random.random() * x - (x/2),
                                     random.random() * y - (y/2),
                                     random.random() * z - (z/2)))
-                print("tripple")
         if self.v.get() == 2:
             x = eval(self.maxX.get()) - eval(self.minX.get())
             y = eval(self.maxY.get()) - eval(self.minY.get())
             for x in range(eval(self.numPoi.get())):
                 self.points.append((random.random() * x - (x/2),
                                     random.random() * y - (y/2)))
-                print("double")
 
     def setButton(self):
         if self.v.get() == 1:
