@@ -30,17 +30,6 @@ from Tkinter import *
 import random, tkFileDialog
 
 
-# # ========================Test===============================
-# root = Tk()
-# root.geometry("1028x800+0+0")
-# root.title("Alg Project")
-#
-#
-#
-# root.mainloop()
-#
-# # =====================endtest==============================
-
 class ExampleApp(Frame):
     """ An example application for TkInter.  Instantiate
         and call the run method to run. """
