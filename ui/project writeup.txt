@@ -1,0 +1,8 @@
+The gui uses the Tkinter library to dispay the items in a grid format. The Tkinter library is a compact and simple gui library.
+
+Each part will work as follows: The text areas will take the X, Y, Z inputs for min and max setting, as well as a text input for number of points for the two algorithims. Below that is a file input text box with a browser button that fills in the text box with the file path. Below that will be a set of radio buttons that select which agorithim to call, wether QuickHull or Chan Minimalist. Lastly there are two buttons, a launch button and a exit button. The exit button exits the program cleanly.
+
+The launch button takes all the previous information and passes it to which ever algorithim for processing. The launch button is where the processing is proformed. First it converts the min and max inputs to doubles. Those doubles are used with the random function to get a list of set of numbers, a set of three numbers for Chan and a set of two numbers for QuickHull.
+
+references
+(SciNet HPC Consortium), Erik Spence, Tkinter presentation, https://wiki.scinet.utoronto.ca/wiki/images/9/9c/Tkinter.pdf

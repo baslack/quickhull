@@ -280,10 +280,10 @@ def chan(raw_pts, filename="chan.obj"):
     #sort the points on X coord
     x_sort(p_list)
 
-    i = 0
-    for this_pt in p_list:
-        print("v[{0}] {1}".format(i + 1, str(this_pt)))
-        i += 1
+    # i = 0
+    # for this_pt in p_list:
+    #     print("v[{0}] {1}".format(i + 1, str(this_pt)))
+    #     i += 1
 
     A = list()
     B = list()
@@ -333,10 +333,14 @@ def chan(raw_pts, filename="chan.obj"):
         A.append(None)
         B.append(None)
 
+    #run x_sort to restore the point
+    #to point links
     x_sort(p_list)
+    #flip the z
     for this_pt in p_list:
         this_pt.z *= -1
 
+    #upper hull as lower hull on mirror
     hull(p_list, 0, len(p_list), len(p_list), A, B, 0, len(A))
 
 
@@ -355,7 +359,6 @@ def chan(raw_pts, filename="chan.obj"):
         i += 1
 
     test_mesh.generate_obj(filename)
-
 
 
 if __name__ == "__main__":
