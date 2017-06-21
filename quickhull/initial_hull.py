@@ -1,7 +1,7 @@
 import random
 import math
 
-
+# returns an array of size points with points within the x, y graphs min and max axis's
 def get_points(points, min_axis, max_axis):
     a = []
     b = []
@@ -14,7 +14,7 @@ def get_points(points, min_axis, max_axis):
         i += 1
     return s
 
-
+# returns the initial hull with the extreme values p1 and p2, and the remaining points in s
 def get_initial_hull(s):
     i = 0
     max_x = 0
@@ -36,7 +36,7 @@ def get_initial_hull(s):
         del s[max_x]
     return p1, p2, s
 
-
+# sqrt((x - x1)^2 + (y - y1)^2) gives points distance from line given by max, min
 def dist_between_two_points(s, max, min):
     x = math.pow(s[min][0] - s[max][0], 2)
     y = math.pow(s[min][1] - s[max][1], 2)
