@@ -14,7 +14,7 @@ num_points = 25
 """
 
 
-def main(s = None):
+def main(s = None, min_x=None, max_x=None, min_y=None, max_y=None):
     s1 = []
     s2 = []
     if( s == None):
@@ -42,12 +42,12 @@ def main(s = None):
         else:
             nil.append(s[i])
         i += 1
-    print_all(s1, s2)
+    print_all(s1, s2,min_x, max_x, min_y, max_y)
 
     # $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
     quick_hull(s1, p1, p2)
     quick_hull(s2, p2, p1)
-    print_hull()
+    print_hull(min_x, max_x, min_y, max_y)
     # $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
 
@@ -124,7 +124,7 @@ def quick_hull(s, p1, p2):
 
 
 
-def print_all(s1,s2):
+def print_all(s1,s2,min_x, max_x, min_y, max_y):
     if len(nil) != 0:
         x3, y3 = zip(*nil)
         plt.scatter(x3, y3, marker='o', color='black')
@@ -136,17 +136,17 @@ def print_all(s1,s2):
         plt.scatter(x2, y2, marker='x', color='green')
     x4, y4 = zip(*hull)
     plt.scatter(x4, y4, marker='o', color='orange')
-    plt.axis([min_axis, max_axis, min_axis, max_axis])
+    plt.axis([min_x, max_x, min_y, max_y])
     plt.grid(True)
     plt.show()
 
-def print_hull():
+def print_hull(min_x, max_x, min_y, max_y):
     if len(nil) != 0:
         x3, y3 = zip(*nil)
         plt.scatter(x3, y3, marker='o', color='black')
     x4, y4 = zip(*hull)
     plt.scatter(x4, y4, marker='o', color='orange')
-    plt.axis([min_axis, max_axis, min_axis, max_axis])
+    plt.axis([min_x, max_x, min_y, max_y])
     plt.grid(True)
     plt.show()
 
