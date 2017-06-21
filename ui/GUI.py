@@ -1,33 +1,9 @@
-# Radio Button:
-# Options:
-# QuickHull3D
-# Chan Minimalist
-# String or Browser Field:
-# Filename
-# Start Button:
-# Exit Button:
-#
-# Start should take the
-# range values from the Min Max
-# generate a point cloud, in other words
-# a list of tuples of 3 elements,
-# of random points.
-#
-# That point cloud should be submitted
-# to the appropriate algo, along with
-# the filename. The algo should hull
-# the point cloud and generate the obj
-# using the Mesh class in the geo
-# package.
-#
-# Exit should close the app.
-
 # Gui by Bishop
 # Started 6/9/17
 # The GUI for Algorithms Project
 
 from Tkinter import *
-import random, tkFileDialog
+import random, tkFileDialog, chan
 
 
 class ExampleApp(Frame):
@@ -97,10 +73,10 @@ class ExampleApp(Frame):
 
         # Radio Group which function ###############################
         self.v = IntVar()
-        self.bt1 = Radiobutton(self, text="Option1",
+        self.bt1 = Radiobutton(self, text="Chan",
                                value=1, variable=self.v,
                                command=lambda: self.setButton()).grid(row=5)
-        self.bt2 = Radiobutton(self, text="Option2",
+        self.bt2 = Radiobutton(self, text="QuickHull",
                                value=2, variable=self.v,
                                command=lambda: self.setButton()).grid(row=6)
 
@@ -117,7 +93,11 @@ class ExampleApp(Frame):
     def startApp(self):
         """Starts selected algorithms"""
         self.makePoints()
-        print("send to algerithim")
+        if self.v.get() == 1:
+            chan.chan(self.points, self.fileText.get())
+            """"""
+        if self.v.get() == 2:
+            """"""
 
     def makePoints(self):
         """Creates sets of tupples for App"""
