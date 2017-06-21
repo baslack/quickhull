@@ -3,7 +3,7 @@
 # The GUI for Algorithms Project
 
 from Tkinter import *
-import random, tkFileDialog, chan
+import random, tkFileDialog, chan, quickhull
 
 
 class ExampleApp(Frame):
@@ -96,6 +96,7 @@ class ExampleApp(Frame):
         if self.v.get() == 1:
             chan.chan(self.points, self.fileText.get())
         if self.v.get() == 2:
+            quickhull.main(self.points)
 
             """"""
 
