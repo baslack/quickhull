@@ -95,8 +95,8 @@ class ExampleApp(Frame):
         self.makePoints()
         if self.v.get() == 1:
             chan.chan(self.points, self.fileText.get())
-            """"""
         if self.v.get() == 2:
+
             """"""
 
     def makePoints(self):
@@ -106,15 +106,15 @@ class ExampleApp(Frame):
             y = eval(self.maxY.get()) - eval(self.minY.get())
             z = eval(self.maxZ.get()) - eval(self.minZ.get())
             for x in range(eval(self.numPoi.get())):
-                self.points.append((random.random() * x - (x/2),
-                                    random.random() * y - (y/2),
-                                    random.random() * z - (z/2)))
+                self.points.append((random.random() * x + eval(self.minX.get()),
+                                    random.random() * y + eval(self.minY.get()),
+                                    random.random() * z + eval(self.minZ.get())))
         if self.v.get() == 2:
             x = eval(self.maxX.get()) - eval(self.minX.get())
             y = eval(self.maxY.get()) - eval(self.minY.get())
             for x in range(eval(self.numPoi.get())):
-                self.points.append((random.random() * x - (x/2),
-                                    random.random() * y - (y/2)))
+                self.points.append((random.random() * x + eval(self.minX.get()),
+                                    random.random() * y + eval(self.minY.get())))
 
     def setButton(self):
         if self.v.get() == 1:
