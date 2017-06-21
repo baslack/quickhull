@@ -4,9 +4,10 @@ import quick_hull_helper as help
 
 nil = []
 hull = []
-max_axis = 1000.0
-min_axis = -1000.0
-num_points = 10
+max_axis = 10.0
+min_axis = 0.0
+num_points = 25
+ # sdfasd
 
 """
 2D convex hull works fine. Just need to comment code and cleanup sections by adding function calls. 
