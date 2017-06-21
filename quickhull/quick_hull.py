@@ -7,7 +7,7 @@ hull = []
 max_axis = 10.0
 min_axis = 0.0
 num_points = 25
- # sdfasd
+ # sdfasdh
 
 """
 2D convex hull works fine. Just need to comment code and cleanup sections by adding function calls. 
