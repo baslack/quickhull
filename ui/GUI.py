@@ -3,7 +3,7 @@
 # The GUI for Algorithms Project
 
 from Tkinter import *
-import random, tkFileDialog, chan
+import random, tkFileDialog, chan, quickhull
 
 
 class ExampleApp(Frame):
@@ -74,11 +74,9 @@ class ExampleApp(Frame):
         # Radio Group which function ###############################
         self.v = IntVar()
         self.bt1 = Radiobutton(self, text="Chan",
-                               value=1, variable=self.v,
-                               command=lambda: self.setButton()).grid(row=5)
+                               value=1, variable=self.v).grid(row=5)
         self.bt2 = Radiobutton(self, text="QuickHull",
-                               value=2, variable=self.v,
-                               command=lambda: self.setButton()).grid(row=6)
+                               value=2, variable=self.v).grid(row=6)
 
         # The go button and the Exit button
         self.launchButton = Button(self,
@@ -95,9 +93,9 @@ class ExampleApp(Frame):
         self.makePoints()
         if self.v.get() == 1:
             chan.chan(self.points, self.fileText.get())
-            """"""
         if self.v.get() == 2:
-            """"""
+            print self.points
+            quickhull.main(self.points, eval(self.minX.get(), eval(self.maxX.get()), eval(self.minY.get()), eval(self.maxY.get()))
 
     def makePoints(self):
         """Creates sets of tupples for App"""
@@ -105,22 +103,16 @@ class ExampleApp(Frame):
             x = eval(self.maxX.get()) - eval(self.minX.get())
             y = eval(self.maxY.get()) - eval(self.minY.get())
             z = eval(self.maxZ.get()) - eval(self.minZ.get())
-            for x in range(eval(self.numPoi.get())):
-                self.points.append((random.random() * x - (x/2),
-                                    random.random() * y - (y/2),
-                                    random.random() * z - (z/2)))
+            for i in range(eval(self.numPoi.get())):
+                self.points.append((random.random() * x + eval(self.minX.get()),
+                                    random.random() * y + eval(self.minY.get()),
+                                    random.random() * z + eval(self.minZ.get())))
         if self.v.get() == 2:
             x = eval(self.maxX.get()) - eval(self.minX.get())
             y = eval(self.maxY.get()) - eval(self.minY.get())
-            for x in range(eval(self.numPoi.get())):
-                self.points.append((random.random() * x - (x/2),
-                                    random.random() * y - (y/2)))
-
-    def setButton(self):
-        if self.v.get() == 1:
-            self.minZSet.configure(state='enabled')
-        if self.v.get() == 2:
-            self.minZSet.configure(state='disabled')
+            for i in range(eval(self.numPoi.get())):
+                self.points.append((random.random() * x + eval(self.minX.get()),
+                                    random.random() * y + eval(self.minY.get())))
 
     def run(self):
         """ Run the app """
