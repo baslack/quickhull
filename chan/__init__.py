@@ -271,7 +271,8 @@ def chan(raw_pts, filename="chan.obj"):
     :param raw_pts: a list of raw tuples of 3 floats
     :type filename: str
     :param filename: a filename (path) to the obj
-    :return: void
+    :rtype : geo.Mesh
+    :return: Mesh obj of generated hull
     """
     #setup a list of Points
     p_list = list()
@@ -359,6 +360,7 @@ def chan(raw_pts, filename="chan.obj"):
         i += 1
 
     test_mesh.generate_obj(filename)
+    return test_mesh
 
 
 if __name__ == "__main__":
@@ -382,7 +384,18 @@ if __name__ == "__main__":
     # test.append((-4.0, 1.0, -4.0))
     # test.append((-5.0, 4.0, 5.0))
 
-    for i in range(100):
-        test.append((random.random()*20-10, random.random()*20-10, random.random()*20-10))
+    # for i in range(100):
+    #     test.append((random.random()*20-10, random.random()*20-10, random.random()*20-10))
+
+    test = [
+        (0.09964782850167017, 0.46903571101375924, 0.012097950134946217),
+        (-0.1755456491170128, 0.5456326040668025, 0.20478850115406594),
+        (-0.21830065947676314, 0.7209408956737615, -0.13513941138262817),
+        (-0.044629166881916316, 0.5348308556270078, -0.15079826891715226),
+        (0.45229166746139526, 0.847848653793335, 0.24407055974006653),
+        (-0.4783439636230469, 0.5599833726882935, 0.470014750957489),
+        (-0.2732780873775482, 0.9194132089614868, -0.440346896648407),
+        (0.07073074579238892, 0.020669907331466675, -0.1684664785861969)
+    ]
 
     chan(test)
