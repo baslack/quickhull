@@ -1,18 +1,52 @@
 import initial_hull
 import quick_hull_helper as help
-import matplotlib as plty
 
 hull = []
 nil = []
 
+# unit testing algorithm for quickhull
+# if the algorithm obtains the correct hull nothing is printed
+# if the algorithm doesnt obtain the correct hull "Test <test number> failed" will be printed
+
 def main():
-    s = [(10,1), (9,2), (8,3), (7,4), (6,5), (6,5), (7,4), (8,3), (9,2), (10,1), (9,9), (10,5), (8,1),
-         (6,1), (7,2), (4,2), (2,2), (1,7)]
-    step_1(s)
-    i=0
-    print_hull()
+    # first test: circle
+    s1 = [(0.1,4.0), (0.5,2.0), (0.5,5.0), (0.7,6.0), (1.1,1.1), (2.0,0.5), (3.0,.1), (4.0,.3), (5.0,.5),
+         (5.8,1.0), (6.5,2.0), (6.9,3.0), (7.0,3.9), (6.5,5.0), (6.0,5.7), (5.0,6.3), (4.0,6.9), (3.0,7.0),
+         (2.0,6.5)]
+    step_1(s1)
+    s1solution = [(6.9, 3.0), (0.5, 2.0), (3.0, 7.0), (0.7, 6.0), (0.5, 5.0), (6.0, 5.7),
+                  (4.0, 6.9), (6.5, 5.0), (3.0, 0.1), (5.8, 1.0), (6.5, 2.0), (5.0, 0.5),
+                  (1.1, 1.1), (2.0, 0.5)]
+    if(sorted(hull) == sorted(s1solution)):
+        i=0
+        # good
+    else:
+        print "Test 1 failed"
+    # second test: cloud of points
+    del hull[:]
+    s2 = [(9.3, 2.8), (5.9, 4.3), (3.3, 5.0), (5.9, 2.5), (0.7, 8.1), (10.0, 2.9), (5.7, 4.8), (8.2, 5.7),
+          (1.8, 4.1), (5.1, 7.3), (7.6, 5.1), (5.8, 2.8), (5.0, 1.8), (9.3, 5.7), (7.8, 3.4), (6.9, 4.2),
+          (4.1, 5.1), (8.5, 7.2), (7.9, 7.5), (7.7, 3.8), (4.6, 4.1), (2.2, 7.9), (1.5, 2.6), (0.9, 1.7), (4.0, 9.8)]
 
-
+    step_1(s2)
+    s2solution = [(0.9, 1.7), (2.2, 7.9), (4.0, 9.8), (5.0, 1.8), (8.5, 7.2), (9.3, 2.8), (9.3, 5.7)]
+    if (sorted(hull) == sorted(s2solution)):
+        i = 0
+        # good
+    else:
+        print "Test 2 failed"
+    # third test: cloud of points
+    del hull[:]
+    s3 = [(1.0, 4.7), (9.5, 0.1), (6.2, 9.8), (0.1, 5.2), (9.4, 6.2), (2.7, 3.4), (8.6, 1.4), (3.8, 8.5),
+          (5.2, 7.4), (1.9, 1.9), (3.8, 3.5), (9.6, 6.1), (1.9, 7.6), (0.4, 7.8), (0.3, 2.8), (6.3, 4.1),
+          (3.1, 3.7), (9.2, 8.6), (5.2, 6.5), (8.7, 7.1), (4.5, 3.2), (5.6, 1.8), (2.6, 4.3), (8.1, 4.9), (7.4, 1.6)]
+    step_1(s3)
+    s3solution = [(9.5, 0.1), (0.3, 2.8), (6.2, 9.8), (0.4, 7.8), (9.2, 8.6), (9.4, 6.2), (1.9, 1.9)]
+    if (sorted(hull) == sorted(s3solution)):
+        i = 0
+        # good
+    else:
+        print "Test 2 failed"
 
 
 def step_1(s):
@@ -117,15 +151,6 @@ def quick_hull(s, p1, p2):
         i += 1
     quick_hull(s1, p1, p3)
     quick_hull(s2, p3, p2)
-
-
-def print_hull():
-    if len(nil) != 0:
-        x3, y3 = zip(*nil)
-        plty.scatter(x3, y3, marker='o', color='black')
-    x4, y4 = zip(*hull)
-    plty.scatter(x4, y4, marker='o', color='orange')
-    plty.show()
 
 if __name__ == "__main__":
     main()
