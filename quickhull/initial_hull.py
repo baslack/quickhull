@@ -8,8 +8,8 @@ def get_points(points, min_axis, max_axis):
     s = []
     i = 0
     while i < points:
-        a.append(round(random.uniform(min_axis, max_axis),1))
-        b.append(round(random.uniform(min_axis, max_axis),1))
+        a.append(random.uniform(min_axis, max_axis))
+        b.append(random.uniform(min_axis, max_axis))
         s.append((a[i], b[i]))
         i += 1
     return s
