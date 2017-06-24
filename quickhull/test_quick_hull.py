@@ -8,7 +8,7 @@ nil = []
 # if the algorithm obtains the correct hull nothing is printed
 # if the algorithm doesnt obtain the correct hull "Test <test number> failed" will be printed
 
-def main():
+def test():
     # first test: circle
     s1 = [(0.1,4.0), (0.5,2.0), (0.5,5.0), (0.7,6.0), (1.1,1.1), (2.0,0.5), (3.0,.1), (4.0,.3), (5.0,.5),
          (5.8,1.0), (6.5,2.0), (6.9,3.0), (7.0,3.9), (6.5,5.0), (6.0,5.7), (5.0,6.3), (4.0,6.9), (3.0,7.0),
@@ -153,4 +153,4 @@ def quick_hull(s, p1, p2):
     quick_hull(s2, p3, p2)
 
 if __name__ == "__main__":
-    main()
+    test()
