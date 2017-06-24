@@ -20,8 +20,6 @@ def main(s = None, min_x=None, max_x=None, min_y=None, max_y=None):
     if( s == None):
         s = initial_hull.get_points(num_points, min_axis, max_axis)
         print "No points were passed. Generating random points"
-    #s = initial_hull.get_points(num_points, min_axis, max_axis)
-    #s = [(.83,2.5),(1.0,5.0),(1.3,6.5),(4.0,4.0),(6.7,3.2),(6.6,7.1),(6.5,9.1),(8.0,7.6),(9.6,7.5)]
     p1, p2, s = initial_hull.get_initial_hull(s)
 
     hull.append(p2[0])
