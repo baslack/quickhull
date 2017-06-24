@@ -95,7 +95,7 @@ class ExampleApp(Frame):
             chan.chan(self.points, self.fileText.get())
         if self.v.get() == 2:
             print self.points
-            quickhull.main(self.points, eval(self.minX.get(), eval(self.maxX.get()), eval(self.minY.get()), eval(self.maxY.get()))
+            quickhull.main(self.points, eval(self.minX.get(), eval(self.maxX.get()), eval(self.minY.get()), eval(self.maxY.get())))
 
     def makePoints(self):
         """Creates sets of tupples for App"""
